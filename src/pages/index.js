@@ -1,15 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'gatsby'
-import { getUser, isLoggedIn } from '../services/auth'
+
+import { FirebaseContext } from '../firebase'
 
 import Layout from '../components/Layout'
 
 export default function Home() {
+  const { user } = useContext(FirebaseContext)
   return (
     <Layout>
-      <h1>Hello {isLoggedIn() ? getUser().name : 'world'}!</h1>
+      <h1>Hello {user ? user.displayName : 'world'}!</h1>
       <p>
-        {isLoggedIn() ? (
+        {user ? (
           <>
             You are logged in, so check your{' '}
             <Link to='/app/profile'>profile</Link>

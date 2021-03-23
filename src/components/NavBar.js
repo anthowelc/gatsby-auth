@@ -1,11 +1,14 @@
-import React from 'react'
-import { Link, navigate } from 'gatsby'
-import { getUser, isLoggedIn, logout } from '../services/auth'
+import React, { useContext } from 'react'
+import { Link } from 'gatsby'
+
+import { FirebaseContext } from '../firebase'
 
 export default function NavBar() {
+  const { user, firebase } = useContext(FirebaseContext)
+
   let greetingMessage = ''
-  if (isLoggedIn()) {
-    greetingMessage = `Hello ${getUser().name}`
+  if (user) {
+    greetingMessage = `Hello ${user.displayName}`
   } else {
     greetingMessage = 'You are not logged in'
   }
@@ -24,16 +27,8 @@ export default function NavBar() {
         {` `}
         <Link to='/app/profile'>Profile</Link>
         {` `}
-        {isLoggedIn() ? (
-          <a
-            href='/'
-            onClick={event => {
-              event.preventDefault()
-              logout(() => navigate(`/app/login`))
-            }}
-          >
-            Logout
-          </a>
+        {user ? (
+          <button onClick={() => firebase.logout()}>Logout</button>
         ) : null}
       </nav>
     </div>

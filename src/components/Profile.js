@@ -1,14 +1,19 @@
-import React from 'react'
-import { getUser } from '../services/auth'
+import React, { useContext } from 'react'
 
-const Profile = () => (
-  <>
-    <h1>Your profile</h1>
-    <ul>
-      <li>Name: {getUser().name}</li>
-      <li>E-mail: {getUser().email}</li>
-    </ul>
-  </>
-)
+import { FirebaseContext } from '../firebase'
+
+const Profile = () => {
+  const { user } = useContext(FirebaseContext)
+
+  return (
+    <>
+      <h1>Your profile</h1>
+      <ul>
+        <li>Name: {user.displayName}</li>
+        <li>E-mail: {user.email}</li>
+      </ul>
+    </>
+  )
+}
 
 export default Profile

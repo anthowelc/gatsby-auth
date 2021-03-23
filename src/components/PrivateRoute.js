@@ -1,12 +1,17 @@
-import React from 'react'
-import { navigate } from 'gatsby'
-import { isLoggedIn } from '../services/auth'
+import React, { useContext } from 'react'
+import { navigate } from '@reach/router'
+import { FirebaseContext } from '../firebase'
 
 const PrivateRoute = ({ component: Component, location, ...rest }) => {
-  if (!isLoggedIn() && location.pathname !== `/app/login`) {
-    navigate('/app/login')
+  const { user } = useContext(FirebaseContext)
+  console.log('privateroute', user)
+
+  if (user === null && location.pathname !== `/app/login`) {
+    console.log('privaterouteNULL', user)
+    navigate(`/app/login`, { replace: true })
     return null
   }
+  console.log('privaterouteUSERRRR', user)
 
   return <Component {...rest} />
 }

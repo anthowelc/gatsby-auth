@@ -19,6 +19,30 @@ Démo de mise en place d'une authentification front-end avec Gatsby.
     npm install
     ```
 
+1.  **Firebase**
+    Create a Firebase project on : https://firebase.google.com/
+
+    Activate Google authentification (https://firebase.google.com/docs/auth/web/google-signin)
+
+    Write your config variables in a `.env.development` file.
+    (I create a sample file for you `.env.development.sample`, juste remove `.sample`.)
+
+    `src/firebase/Firebase.js`
+    This file contains Firebase APIs that will be usefull for the app.
+
+    `src/hooks/useAuth.js`
+    Custom hook to handle Firebase user with `onAuthStateChanged` (https://firebase.google.com/docs/auth/web/manage-users).
+
+    `src.firebase/context.js`
+    Context for Firebase with APIs and user.
+    This context is used in `gatsby-browser.js` to be accessible through the app.
+
+1.  **Protected pages**
+    All protected pages (not build ssr) are in `App.js`.
+    It's defined in the plugin `gatsby-plugin-create-client-paths`, that all pages prefixed wit `/app/` are client only.
+
+    You can add client routes, or change prefixe as you want.
+
 1.  **Start developing.**
 
     ```shell
