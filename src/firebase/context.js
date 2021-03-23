@@ -5,6 +5,7 @@ import useAuth from '../hooks/useAuth'
 
 const FirebaseContext = createContext(null)
 
+// Create to wrap app in gatsby-browser.
 const FirebaseProvider = ({ children }) => {
   const user = useAuth()
   return (

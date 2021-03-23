@@ -12,6 +12,7 @@ export default function NavBar() {
   } else {
     greetingMessage = 'You are not logged in'
   }
+
   return (
     <div
       style={{
@@ -27,9 +28,7 @@ export default function NavBar() {
         {` `}
         <Link to='/app/profile'>Profile</Link>
         {` `}
-        {user ? (
-          <button onClick={() => firebase.logout()}>Logout</button>
-        ) : null}
+        {user && <button onClick={() => firebase.logout()}>Logout</button>}
       </nav>
     </div>
   )

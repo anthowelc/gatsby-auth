@@ -9,7 +9,7 @@ export default function Home() {
   const { user } = useContext(FirebaseContext)
   return (
     <Layout>
-      <h1>Hello {user ? user.displayName : 'world'}!</h1>
+      <h1>Hello {user?.displayName || 'world'}!</h1>
       <p>
         {user ? (
           <>

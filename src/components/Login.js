@@ -6,18 +6,14 @@ import { FirebaseContext } from '../firebase'
 const Login = () => {
   const { user, firebase } = useContext(FirebaseContext)
 
-  if (user !== null) {
+  if (user) {
     navigate(`/app/profile`)
   }
 
   return (
     <>
       <h1>Login</h1>
-      <button
-        onClick={() => firebase.login('google')}
-        type='button'
-        className='login-btn'
-      >
+      <button onClick={() => firebase.login()} type='button'>
         Google Login
       </button>
     </>

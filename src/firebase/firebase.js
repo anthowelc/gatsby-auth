@@ -2,6 +2,7 @@ import app from 'firebase/app'
 import 'firebase/auth'
 import firebaseConfig from './config'
 
+// Firebase APIS
 class Firebase {
   constructor() {
     app.initializeApp(firebaseConfig)
